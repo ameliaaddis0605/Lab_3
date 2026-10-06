@@ -13,12 +13,15 @@ class WordAnalyzer:
         self.__frequencies = {}
     def process_file(self):
         try:
-            path.lib.Path.exists()
-            path.lib.Path.open()
-            for line in filepath:
-                
-            self.__filepath.string.punctuation()
-            self.__filepath.lower()
+            if self.__filepath.exists():
+                with self.__filepath.open() as open_file:
+                for line in open_file:
+                    self.__filepath.string.punctuation()
+                    self.__filepath.lower()
         except FileNotFoundError:
+            return false
             
+            
+        
+
         
