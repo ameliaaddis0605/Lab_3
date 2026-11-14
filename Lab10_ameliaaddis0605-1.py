@@ -20,5 +20,10 @@ class WordAnalyzer:
                     line = line.translate(table)
                     line = line.lower()
                     apart = line.split()
+                    for word in apart:
+                        if word in apart:
+                            word += 1
+                        else:
+                            word == 1
         except FileNotFoundError:
             return False
