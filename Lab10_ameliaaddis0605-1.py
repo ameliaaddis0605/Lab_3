@@ -21,9 +21,9 @@ class WordAnalyzer:
                     line = line.lower()
                     apart = line.split()
                     for word in apart:
-                        if word in apart:
-                            word += 1
+                        if word in self.__frequencies:
+                            self.__frequencies[word] += 1
                         else:
-                            word == 1
+                            self.__frequencies[word] = 1
         except FileNotFoundError:
             return False
