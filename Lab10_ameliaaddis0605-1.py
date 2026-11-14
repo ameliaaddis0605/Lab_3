@@ -15,13 +15,10 @@ class WordAnalyzer:
         try:
             if self.__filepath.exists():
                 with self.__filepath.open() as open_file:
-                for line in open_file:
-                    self.__filepath.string.punctuation()
-                    self.__filepath.lower()
+                 for line in open_file:
+                    table = str.maketrans("", "",string.punctuation)
+                    line = line.translate(table)
+                    line = line.lower()
+                    apart = line.split()
         except FileNotFoundError:
-            return false
-            
-            
-        
-
-        
+            return False
