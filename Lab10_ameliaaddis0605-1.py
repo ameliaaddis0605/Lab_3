@@ -25,5 +25,12 @@ class WordAnalyzer:
                             self.__frequencies[word] += 1
                         else:
                             self.__frequencies[word] = 1
+                return True
+            else: 
+                return False
+
         except FileNotFoundError:
             return False
+
+        
+    def print_report(self):
