@@ -37,8 +37,9 @@ class WordAnalyzer:
         sort = sorted(self.__frequencies.keys())
         for word in sort:
             print(f"{word:<10} :: {self.__frequencies[word]}")
+
 def main():
-    file = {
+    files = {
         "1": Path("princess.mars.txt"),
         "2": Path("Tarzan.txt"),
         "3": Path("treasure_island.txt"),
@@ -47,12 +48,27 @@ def main():
     choice = ""
     
     while choice != "5":
-        print(f"--- Word Analyzer ---")
+        print(f"--- Word Analyzer --- \nPlease select a file to analyze:")
 
-        for number, file in file.items():
+        for number, file in files.items():
             print(number, file.stem)
 
         print("5. Exit")
 
-        print(input("Enter your choice (1-5):"))
+        choice = input("Enter your choice (1-5): ")
+
+        if choice in files:
+            print(f"Processing {files[choice].name} ...")
+
+        elif choice == "5":
+            print("Goodbye!")
+
+        else:
+            print("Invalid Choice. Please select from 1-5.")
+
+if __name__ == "__main__":
+    main()
+
+
+
 
