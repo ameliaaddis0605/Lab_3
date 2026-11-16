@@ -14,9 +14,10 @@ class WordAnalyzer:
     def process_file(self):
         try:
             if self.__filepath.exists():
-                with self.__filepath.open() as open_file:
+                with self.__filepath.open(encoding="utf-8") as open_file:
                  for line in open_file:
-                    table = str.maketrans("", "",string.punctuation)
+                    extra = "“”‘’•"
+                    table = str.maketrans("", "",string.punctuation + extra)
                     line = line.translate(table)
                     line = line.lower()
                     apart = line.split()
@@ -40,7 +41,7 @@ class WordAnalyzer:
 
 def main():
     files = {
-        "1": Path("princess.mars.txt"),
+        "1": Path("princess_mars.txt"),
         "2": Path("Tarzan.txt"),
         "3": Path("treasure_island.txt"),
         "4": Path("monte_cristo.txt")
@@ -48,26 +49,38 @@ def main():
     choice = ""
     
     while choice != "5":
-        print(f"--- Word Analyzer --- \nPlease select a file to analyze:")
+        print(f"\n--- Word Analyzer --- \nPlease select a file to analyze:")
 
         for number, file in files.items():
-            print(number, file.stem)
+            print(f"{number}. {file.stem.replace("_"," ").title()}")
 
         print("5. Exit")
 
-        choice = input("Enter your choice (1-5): ")
+        choice = input("\nEnter your choice (1-5): ")
 
         if choice in files:
             print(f"Processing {files[choice].name} ...")
+            analyzer = WordAnalyzer(files[choice])
 
+            if analyzer.process_file():
+                analyzer.print_report()
+            input("Press Enter to return to the menu...")                   
+                       
+                        
         elif choice == "5":
-            print("Goodbye!")
+            print("\nGoodbye!")
 
         else:
-            print("Invalid Choice. Please select from 1-5.")
+            print("\nInvalid Choice. Please select from 1-5.\n")
 
+            input("Press Enter to return to the menu...")                   
+       
+
+
+        
 if __name__ == "__main__":
     main()
+
 
 
 
